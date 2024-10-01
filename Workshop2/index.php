@@ -7,25 +7,27 @@ $phone = '';
 $mail = '';
 
 if (isset($_GET['name']) && isset($_GET['lastname']) && isset($_GET['phone']) && isset($_GET['mail'])) {
-    // Retrieve the values from the form
+    //# Retrieve the values from the form
     $name = $_GET['name'];
     $lastName = $_GET['lastname'];
     $phone = $_GET['phone'];
     $mail = $_GET['mail'];
+    //#
 
-    // Prepare an SQL statement to insert the data into the database
+    //# Prepare an SQL to insert the data into the database
     $sql = "INSERT INTO users (name, lastname, phone, email) VALUES ('$name', '$lastName', '$phone', '$mail')";
+    //#
 
     // Execute the query and check if the insertion was successful
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "Info was added into the DB";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    //#
 }
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +40,7 @@ $conn->close();
   <form action="" method="GET">
     <div class="form-group">
       <label for="name">Name</label>
+
       <!--#Fill and add default values -->
       <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($name); ?>" placeholder="Your name">
       <label for="lastname">Last Name</label>
@@ -46,22 +49,29 @@ $conn->close();
       <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($phone); ?>" placeholder="Your phone number">
       <label for="mail">Email Address</label>
       <input type="email" class="form-control" name="mail" value="<?php echo htmlspecialchars($mail); ?>" placeholder="Your email address">
+      <!-- # -->
+
     </div>
+     <!-- # Buttons -->
     <button type="submit" class="btn btn-primary">Submit</button>
     <button type="button" class="btn btn-secondary" onclick="printInfo()">Print</button>
+     <!-- # -->
+
   </form>
   <!--#-->
   
   <script>
     function printInfo() {
-      // Build the URL with current form values
+      //# Build the URL with current form values
       const name = encodeURIComponent(document.querySelector('input[name="name"]').value);
       const lastName = encodeURIComponent(document.querySelector('input[name="lastname"]').value);
       const phone = encodeURIComponent(document.querySelector('input[name="phone"]').value);
       const mail = encodeURIComponent(document.querySelector('input[name="mail"]').value);
+      //#
 
-      // Redirect to print.php with the query string
+      //# Redirect to print.php with the query string
       window.location.href = `utils/print.php?name=${name}&lastname=${lastName}&phone=${phone}&mail=${mail}`;
+      //#
     }
   </script>
 
