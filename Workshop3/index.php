@@ -66,7 +66,7 @@ $conn->close();
       <label for="mail">Email Address</label>
       <input type="email" class="form-control" name="mail" value="<?php echo htmlspecialchars($mail); ?>" placeholder="Your email address">
       <!-- # -->
-       
+
       <!-- Province Dropdown -->
       <label for="province">Province:</label>
       <select name="province" required>
@@ -81,17 +81,19 @@ $conn->close();
         }
         ?>
       </select><br><br>
+      <!-- # -->
 
       <!-- Submit and Print Buttons -->
       <button type="submit">Submit</button>
       <button type="button" onclick="printInfo()">Print</button>
+      <!-- # -->
     </div>
   </form>
 
   <script>
     function printInfo() {
     // Redirect to the print.php file
-    window.location.href = 'utils/print.php';  // Adjust path if needed
+    window.location.href = 'utils/print.php';
     }
   </script>
 </body>

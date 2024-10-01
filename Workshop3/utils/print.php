@@ -1,12 +1,11 @@
 <?php
 // Include your database connection
-include '../db_connection.php';  // Make sure this path is correct based on your file structure
+include '../db_connection.php';
 
-// Select * users from the database
+// Select * users from the database with a join to get the provinces from the foreign key
 $sql = "SELECT users.name, users.lastname, users.phone, users.email, provinces.province_name 
         FROM users 
         JOIN provinces ON users.province_id = provinces.id";
-
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
